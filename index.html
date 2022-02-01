@@ -264,9 +264,6 @@
 <p>是后来看题解才发现可以用预处理 $js$ 使算法优化到 $O(n\sqrt{n})$ 的，实属惭愧。</p>
 <p><strong>代码：</strong> note: 该代码是 $O(n\sqrt{nlogn})$ 的</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="function">ll <span class="title">read</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">char</span> c=<span class="built_in">getchar</span>();<span class="keyword">bool</span> flag=<span class="number">0</span>;ll x=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span>(c&lt;<span class="string">&#x27;0&#x27;</span>||c&gt;<span class="string">&#x27;9&#x27;</span>)&#123;<span class="keyword">if</span>(c==<span class="string">&#x27;-&#x27;</span>)flag=<span class="number">1</span>;c=<span class="built_in">getchar</span>();&#125;</span><br><span class="line">	<span class="keyword">while</span>(c&gt;=<span class="string">&#x27;0&#x27;</span>&amp;&amp;c&lt;=<span class="string">&#x27;9&#x27;</span>)&#123;x=(x&lt;&lt;<span class="number">3</span>)+(x&lt;&lt;<span class="number">1</span>)+c-<span class="string">&#x27;0&#x27;</span>;c=<span class="built_in">getchar</span>();&#125;</span><br><span class="line">	<span class="keyword">return</span> flag?-x:x;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> ll N=<span class="number">1e5</span>+<span class="number">10</span>,sqrN=<span class="built_in">sqrt</span>(<span class="number">1e5</span>*<span class="number">30</span>)+<span class="number">10</span>,INF=<span class="number">1e13</span>;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">node</span>&#123;</span></span><br><span class="line">	ll num,val;</span><br><span class="line">&#125;a[N];</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">chunk</span>&#123;</span></span><br><span class="line">	ll l,r;</span><br><span class="line">&#125;chk[N];</span><br><span class="line">ll v1[N],v2[N],dp[sqrN][sqrN],buc[N];</span><br><span class="line">vector&lt;ll&gt; pos[N];</span><br><span class="line"><span class="comment">//这里注意一下，c++ &lt;bits/stdc++.h&gt;库中是存在count这个函数的</span></span><br><span class="line"><span class="function">ll <span class="title">count_</span><span class="params">(ll l,ll r,ll num)</span></span>&#123;</span><br><span class="line">	ll pos1=<span class="built_in">lower_bound</span>(pos[num].<span class="built_in">begin</span>(),pos[num].<span class="built_in">end</span>(),l)-pos[num].<span class="built_in">begin</span>();</span><br><span class="line">	ll pos2=<span class="built_in">upper_bound</span>(pos[num].<span class="built_in">begin</span>(),pos[num].<span class="built_in">end</span>(),r)-pos[num].<span class="built_in">begin</span>();</span><br><span class="line">	<span class="keyword">return</span> pos2-pos1;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	ll n=<span class="built_in">read</span>(),q=<span class="built_in">read</span>(),t=<span class="built_in">sqrt</span>(n/(<span class="built_in">log</span>(n)/<span class="built_in">log</span>(<span class="number">2</span>))),top=(n<span class="number">-1</span>)/t+<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(ll i=<span class="number">1</span>;i&lt;=n;i++) v1[i]=v2[i]=<span class="built_in">read</span>();</span><br><span class="line">	<span class="built_in">sort</span>(v2+<span class="number">1</span>,v2+<span class="number">1</span>+n);</span><br><span class="line">	ll len=<span class="built_in">unique</span>(v2+<span class="number">1</span>,v2+<span class="number">1</span>+n)-v2<span class="number">-1</span>;</span><br><span class="line">	<span class="keyword">for</span>(ll i=<span class="number">1</span>;i&lt;=len;i++) pos[i].<span class="built_in">push_back</span>(<span class="number">0</span>);</span><br><span class="line">	<span class="keyword">for</span>(ll i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">		a[i]=(node)&#123;<span class="built_in">lower_bound</span>(v2+<span class="number">1</span>,v2+<span class="number">1</span>+len,v1[i])-v2,v1[i]&#125;;</span><br><span class="line">		pos[a[i].num].<span class="built_in">push_back</span>(i); </span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(ll i=<span class="number">1</span>;i&lt;=len;i++) pos[i].<span class="built_in">push_back</span>(INF);</span><br><span class="line">	<span class="keyword">for</span>(ll i=<span class="number">1</span>;i&lt;=top;i++) chk[i]=(chunk)&#123;chk[i<span class="number">-1</span>].r+<span class="number">1</span>,<span class="built_in">min</span>(chk[i<span class="number">-1</span>].r+t,n)&#125;; </span><br><span class="line">	<span class="keyword">for</span>(ll i=<span class="number">1</span>;i&lt;=top;i++)&#123;</span><br><span class="line">		ll mx=<span class="number">0</span>,mxnum=<span class="number">0</span>;</span><br><span class="line">		<span class="built_in">memset</span>(buc,<span class="number">0</span>,<span class="built_in"><span class="keyword">sizeof</span></span>(buc));</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">for</span>(ll j=i;j&lt;=top;j++)&#123;</span><br><span class="line">			<span class="keyword">for</span>(ll k=chk[j].l;k&lt;=chk[j].r;k++)&#123;</span><br><span class="line">				buc[a[k].num]++;</span><br><span class="line">				<span class="keyword">if</span>(buc[a[k].num]*a[k].val&gt;mx)&#123;</span><br><span class="line">					mx=buc[a[k].num]*a[k].val;</span><br><span class="line">					mxnum=a[k].num;</span><br><span class="line">				&#125; </span><br><span class="line">			&#125; </span><br><span class="line">			dp[i][j]=mxnum;</span><br><span class="line">		&#125; 	</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">while</span>(q--)&#123;</span><br><span class="line">		ll l=<span class="built_in">read</span>(),r=<span class="built_in">read</span>(),lchk=(l<span class="number">-1</span>)/t+<span class="number">1</span>,rchk=(r<span class="number">-1</span>)/t+<span class="number">1</span>;</span><br><span class="line">		ll mxnum=dp[lchk+<span class="number">1</span>][rchk<span class="number">-1</span>],mx=<span class="number">0</span>;</span><br><span class="line">		<span class="keyword">if</span>(mxnum) mx=v2[mxnum]*<span class="built_in">count_</span>(l,r,mxnum);</span><br><span class="line">		<span class="keyword">for</span>(ll i=l;i&lt;=chk[lchk].r;i++)&#123;</span><br><span class="line">			ll js=<span class="built_in">count_</span>(l,r,a[i].num);</span><br><span class="line">			<span class="keyword">if</span>(js*a[i].val&gt;=mx)&#123;</span><br><span class="line">				mx=js*a[i].val;</span><br><span class="line">				mxnum=a[i].num;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">for</span>(ll i=r;i&gt;=chk[rchk].l;i--)&#123;</span><br><span class="line">			ll js=<span class="built_in">count_</span>(l,r,a[i].num);</span><br><span class="line">			<span class="keyword">if</span>(js*a[i].val&gt;=mx)&#123;</span><br><span class="line">				mx=js*a[i].val;</span><br><span class="line">				mxnum=a[i].num;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>,mx);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
 <h3 id="方法二-（回滚莫队）"><a href="#方法二-（回滚莫队）" class="headerlink" title="方法二 （回滚莫队）"></a>方法二 （回滚莫队）</h3><p><strong>回滚莫队：</strong></p>
 <p>这里简单介绍下回滚莫队。</p>
 <p><strong>适用范围：</strong></p>
@@ -486,6 +483,63 @@
 
 
   
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 
