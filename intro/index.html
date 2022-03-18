@@ -168,6 +168,321 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://20160161simon.github.io/2022/03/18/%E7%AE%97%E6%B3%95%E5%B0%8F%E6%84%9F%E6%82%9F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="20160161simon">
+      <meta itemprop="description" content="20160161simon的博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="20160161simon's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/03/18/%E7%AE%97%E6%B3%95%E5%B0%8F%E6%84%9F%E6%82%9F/" class="post-title-link" itemprop="url">算法小感悟</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-03-18 22:50:54 / 修改时间：23:12:45" itemprop="dateCreated datePublished" datetime="2022-03-18T22:50:54+08:00">2022-03-18</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/oi/" itemprop="url" rel="index"><span itemprop="name">oi</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2022/03/18/%E7%AE%97%E6%B3%95%E5%B0%8F%E6%84%9F%E6%82%9F/" class="post-meta-item leancloud_visitors" data-flag-title="算法小感悟" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2022/03/18/%E7%AE%97%E6%B3%95%E5%B0%8F%E6%84%9F%E6%82%9F/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2022/03/18/%E7%AE%97%E6%B3%95%E5%B0%8F%E6%84%9F%E6%82%9F/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>这里主要记录一下我在学习过程中的一些小感悟，或是想法…</p>
+<h1 id="二分"><a href="#二分" class="headerlink" title="二分"></a>二分</h1><ul>
+<li><p>其实应该说是对于 X 分都适用，这类算法都需要着重注意<strong>溢出</strong>及<strong>边界</strong>的问题，一个经典的例子如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">bsearch</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y, <span class="keyword">int</span> v)</span></span>&#123; <span class="comment">// 经典二分查找</span></span><br><span class="line">	<span class="keyword">int</span> m;</span><br><span class="line">	<span class="keyword">while</span>(x &lt; y)&#123; <span class="comment">// 边界注意</span></span><br><span class="line">    	m = x + (y - x) / <span class="number">2</span>; <span class="comment">// 防溢出处理</span></span><br><span class="line">    	<span class="keyword">if</span>(A[m] == v) <span class="keyword">return</span> m;</span><br><span class="line">    	<span class="keyword">else</span> <span class="keyword">if</span>(A[m] &gt; v) y = m;</span><br><span class="line">    	<span class="keyword">else</span> x = m + <span class="number">1</span>;</span><br><span class="line">	&#125; </span><br><span class="line">	<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>显然防溢出还可以用在计算机其他领域，对于<strong>数据的溢出</strong>在编程时应多多注意。</p>
+</li>
+</ul>
+<h1 id="分治"><a href="#分治" class="headerlink" title="分治"></a>分治</h1><ul>
+<li>分治题一般需注意思考<strong>拆分</strong>方法。如何<strong>拆分</strong>，怎样<strong>定义子结构</strong>很重要。（定义子结构对于 dp 也很重要）</li>
+</ul>
+<h1 id="贪心"><a href="#贪心" class="headerlink" title="贪心"></a>贪心</h1><ul>
+<li><p>关于<strong>单调性</strong></p>
+<p>贪心题型多伴随单调性出现，找到题目中<strong>隐藏的单调性</strong>对于解题与证明算法正确性有很大的帮助，举一个例子：</p>
+<blockquote>
+<p><strong>乘船问题</strong> 。有 $n$ 个人，第 $i$ 个人的重量为 $w_{i}$ 。每艘船最大承重量为 $C$，求最少几艘船可以渡过所有人。</p>
+</blockquote>
+<p>乘船问题其实很简单，但我们需要注意其中的思想。若你想证明做法的正确性，且使用的反证法，证明过程中会出现<strong>船数不会增加</strong>、<strong>新解不会更差</strong>这样的字眼，这些都是很经典的单调性在证明中的应用，需要好好感受。</p>
+</li>
+<li><p>关于<strong>最优子结构</strong></p>
+<p>我一开始对该概念一直一知半解，最近开始有点感觉。</p>
+<p><strong>最优子结构</strong>定义：当你对数据的子结构取到最优解时，整体也是最优解。</p>
+<p>找最优子结构时需注意<strong>等价关系</strong>，详细的说就是，一般你需要先定义如何表示状态，再寻找转化状态的方法。在这过程中你会发现你需要解决的问题规模缩小了，类似于分治的感觉。</p>
+<p>需要注意的是当你对最小的子结构进行算法时要注意自己在这过程中的正确性。（一般很少会去注意它，但这其实很重要）</p>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://20160161simon.github.io/2022/03/18/%E6%9C%80%E7%9F%AD%E8%B7%AF%E6%9D%82%E8%B0%88/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="20160161simon">
+      <meta itemprop="description" content="20160161simon的博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="20160161simon's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/03/18/%E6%9C%80%E7%9F%AD%E8%B7%AF%E6%9D%82%E8%B0%88/" class="post-title-link" itemprop="url">最短路杂谈</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-03-18 22:45:45 / 修改时间：22:51:31" itemprop="dateCreated datePublished" datetime="2022-03-18T22:45:45+08:00">2022-03-18</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/oi/" itemprop="url" rel="index"><span itemprop="name">oi</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/oi/%E5%9B%BE%E8%AE%BA/" itemprop="url" rel="index"><span itemprop="name">图论</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2022/03/18/%E6%9C%80%E7%9F%AD%E8%B7%AF%E6%9D%82%E8%B0%88/" class="post-meta-item leancloud_visitors" data-flag-title="最短路杂谈" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2022/03/18/%E6%9C%80%E7%9F%AD%E8%B7%AF%E6%9D%82%E8%B0%88/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2022/03/18/%E6%9C%80%E7%9F%AD%E8%B7%AF%E6%9D%82%E8%B0%88/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>默认大家学过最短路，复健的一环…</p>
+<h1 id="比较"><a href="#比较" class="headerlink" title="比较"></a>比较</h1><p>最短路有很多情况，我们需要根据情况选择最合适的算法。</p>
+<p>注：下列图的定义都是 $G = ( V , E )$ ，若无特别描述，图包括无向图及有向图。</p>
+<ul>
+<li><p>若图中的<strong>边权都相等</strong></p>
+<p>可以选择 bfs ，时间复杂度为 $O(E+V)$</p>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://20160161simon.github.io/2022/03/18/UVA12166%20%E4%BF%AE%E6%94%B9%E5%A4%A9%E5%B9%B3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="20160161simon">
+      <meta itemprop="description" content="20160161simon的博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="20160161simon's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/03/18/UVA12166%20%E4%BF%AE%E6%94%B9%E5%A4%A9%E5%B9%B3/" class="post-title-link" itemprop="url">UVA12166 修改天平 Equilibrium Mobile</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-03-18 22:43:05 / 修改时间：22:44:36" itemprop="dateCreated datePublished" datetime="2022-03-18T22:43:05+08:00">2022-03-18</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/oi/" itemprop="url" rel="index"><span itemprop="name">oi</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/oi/%E5%9B%BE%E8%AE%BA/" itemprop="url" rel="index"><span itemprop="name">图论</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2022/03/18/UVA12166%20%E4%BF%AE%E6%94%B9%E5%A4%A9%E5%B9%B3/" class="post-meta-item leancloud_visitors" data-flag-title="UVA12166 修改天平 Equilibrium Mobile" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2022/03/18/UVA12166%20%E4%BF%AE%E6%94%B9%E5%A4%A9%E5%B9%B3/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2022/03/18/UVA12166%20%E4%BF%AE%E6%94%B9%E5%A4%A9%E5%B9%B3/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="UVA12166-修改天平-Equilibrium-Mobile"><a href="#UVA12166-修改天平-Equilibrium-Mobile" class="headerlink" title="UVA12166 修改天平 Equilibrium Mobile"></a>UVA12166 修改天平 Equilibrium Mobile</h1><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/UVA12166">题目链接</a></p>
+<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>观察发现，由于原树只有度数为 $0$ 或 $2$ ( 国外的满二叉树 ) ，故有</p>
+<ul>
+<li><strong>在同一层的叶子节点重量应相等—-[1]</strong></li>
+<li><strong>按层数叶子节点权重呈 $2$ 的指数增加—-[2]</strong></li>
+</ul>
+<p>结合 [1] , [2] 有 $对于每个节点，节点权重*2^{节点深度}相等$</p>
+<p>于是我们扫一遍然后排序找最大连续相同子序列即可。</p>
+<h1 id="时间复杂度"><a href="#时间复杂度" class="headerlink" title="时间复杂度"></a>时间复杂度</h1><p>$O(nlogn)$</p>
+<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> ull;</span><br><span class="line"><span class="function">ll <span class="title">read</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">char</span> c=<span class="built_in">getchar</span>();<span class="keyword">bool</span> flag=<span class="number">0</span>;ll x=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span>(c&lt;<span class="string">&#x27;0&#x27;</span>||c&gt;<span class="string">&#x27;9&#x27;</span>)&#123;<span class="keyword">if</span>(c==<span class="string">&#x27;-&#x27;</span>)flag=<span class="number">1</span>;c=<span class="built_in">getchar</span>();&#125;</span><br><span class="line">	<span class="keyword">while</span>(c&gt;=<span class="string">&#x27;0&#x27;</span>&amp;&amp;c&lt;=<span class="string">&#x27;9&#x27;</span>)&#123;x=(x&lt;&lt;<span class="number">3</span>)+(x&lt;&lt;<span class="number">1</span>)+c-<span class="string">&#x27;0&#x27;</span>;c=<span class="built_in">getchar</span>();&#125;</span><br><span class="line">	<span class="keyword">return</span> flag?-x:x;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> ll N=<span class="number">1e6</span>+<span class="number">10</span>,L=(<span class="number">1</span>&lt;&lt;<span class="number">16</span>)+<span class="number">10</span>;</span><br><span class="line"><span class="keyword">char</span> s[N];</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">chk</span><span class="params">(<span class="keyword">char</span> c)</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="string">&#x27;0&#x27;</span>&lt;=c &amp;&amp; c&lt;=<span class="string">&#x27;9&#x27;</span>;</span><br><span class="line">&#125;</span><br><span class="line">ll a[L];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	ll t=<span class="built_in">read</span>();</span><br><span class="line">	<span class="keyword">while</span>(t--)&#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>,s+<span class="number">1</span>);</span><br><span class="line">		ll len=<span class="built_in">strlen</span>(s+<span class="number">1</span>),dep=<span class="number">0</span>,t=<span class="number">0</span>,top=<span class="number">0</span>,mx=<span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span>(ll i=<span class="number">1</span>;i&lt;=len;i++)&#123;</span><br><span class="line">			<span class="keyword">if</span>( !<span class="built_in">chk</span>(s[i]) &amp;&amp; <span class="built_in">chk</span>(s[i<span class="number">-1</span>]) ) a[++top]=t*(<span class="number">1</span>&lt;&lt;(dep<span class="number">-1</span>)),t=<span class="number">0</span>;</span><br><span class="line">			<span class="keyword">if</span>( <span class="built_in">chk</span>(s[i]) ) t=t*<span class="number">10</span>+s[i]-<span class="string">&#x27;0&#x27;</span>;</span><br><span class="line">			<span class="keyword">else</span> <span class="keyword">if</span>(s[i]==<span class="string">&#x27;[&#x27;</span>) dep++;</span><br><span class="line">			<span class="keyword">else</span> <span class="keyword">if</span>(s[i]==<span class="string">&#x27;]&#x27;</span>) dep--;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">sort</span>(a+<span class="number">1</span>,a+<span class="number">1</span>+top);</span><br><span class="line">		ll temp=<span class="number">1</span>;</span><br><span class="line">		<span class="keyword">for</span>(ll i=<span class="number">1</span>;i&lt;=top;i++)&#123;</span><br><span class="line">			<span class="keyword">if</span>(a[i]==a[i<span class="number">-1</span>]) temp++;</span><br><span class="line">			<span class="keyword">else</span> mx=<span class="built_in">max</span>(temp,mx),temp=<span class="number">1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		mx=<span class="built_in">max</span>(temp,mx);</span><br><span class="line">		<span class="keyword">if</span>(top) <span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>,top-mx);</span><br><span class="line">		<span class="keyword">else</span> <span class="built_in">printf</span>(<span class="string">&quot;0\n&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://20160161simon.github.io/2022/03/06/uva-10129-Play-on-Words/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -302,7 +617,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-03-05 23:37:35" itemprop="dateModified" datetime="2022-03-05T23:37:35+08:00">2022-03-05</time>
+                <time title="修改时间：2022-03-18 22:45:21" itemprop="dateModified" datetime="2022-03-18T22:45:21+08:00">2022-03-18</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -910,7 +1225,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-count">8</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -923,7 +1238,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

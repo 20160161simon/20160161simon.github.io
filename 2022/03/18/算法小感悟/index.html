@@ -20,19 +20,22 @@
     var CONFIG = {"hostname":"20160161simon.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"valine","storage":true,"lazyload":false,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":-1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="AFOer">
-<meta property="og:type" content="website">
-<meta property="og:title" content="关于 About">
-<meta property="og:url" content="https://20160161simon.github.io/about/index.html">
+  <meta name="description" content="前言这里主要记录一下我在学习过程中的一些小感悟，或是想法… 二分 其实应该说是对于 X 分都适用，这类算法都需要着重注意溢出及边界的问题，一个经典的例子如下： 12345678910int bsearch(int x, int y, int v)&amp;#123; &#x2F;&#x2F; 经典二分查找	int m;	while(x &lt; y)&amp;#123; &#x2F;&#x2F; 边界注意    	m &#x3D; x + (y - x) &#x2F; 2">
+<meta property="og:type" content="article">
+<meta property="og:title" content="算法小感悟">
+<meta property="og:url" content="https://20160161simon.github.io/2022/03/18/%E7%AE%97%E6%B3%95%E5%B0%8F%E6%84%9F%E6%82%9F/index.html">
 <meta property="og:site_name" content="20160161simon&#39;s Blog">
-<meta property="og:description" content="AFOer">
+<meta property="og:description" content="前言这里主要记录一下我在学习过程中的一些小感悟，或是想法… 二分 其实应该说是对于 X 分都适用，这类算法都需要着重注意溢出及边界的问题，一个经典的例子如下： 12345678910int bsearch(int x, int y, int v)&amp;#123; &#x2F;&#x2F; 经典二分查找	int m;	while(x &lt; y)&amp;#123; &#x2F;&#x2F; 边界注意    	m &#x3D; x + (y - x) &#x2F; 2">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-01-30T10:41:09.000Z">
-<meta property="article:modified_time" content="2022-01-30T12:57:46.000Z">
+<meta property="article:published_time" content="2022-03-18T14:50:54.000Z">
+<meta property="article:modified_time" content="2022-03-18T15:12:45.334Z">
 <meta property="article:author" content="20160161simon">
+<meta property="article:tag" content="oi">
+<meta property="article:tag" content="二分">
+<meta property="article:tag" content="贪心">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://20160161simon.github.io/about/">
+<link rel="canonical" href="https://20160161simon.github.io/2022/03/18/%E7%AE%97%E6%B3%95%E5%B0%8F%E6%84%9F%E6%82%9F/">
 
 
 <script id="page-configurations">
@@ -40,13 +43,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>关于 About | 20160161simon's Blog
-</title>
+  <title>算法小感悟 | 20160161simon's Blog</title>
   
 
 
@@ -164,44 +166,146 @@
       <div class="main-inner">
         <div class="content-wrap">
           
-  
-  
 
-          <div class="content page posts-expand">
+          <div class="content post posts-expand">
             
 
     
-    
-    
-    <div class="post-block" lang="zh-CN">
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://20160161simon.github.io/2022/03/18/%E7%AE%97%E6%B3%95%E5%B0%8F%E6%84%9F%E6%82%9F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="20160161simon">
+      <meta itemprop="description" content="20160161simon的博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="20160161simon's Blog">
+    </span>
       <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          算法小感悟
+        </h1>
 
-<h1 class="post-title" itemprop="name headline">关于 About
-</h1>
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
 
-<div class="post-meta">
+              <time title="创建时间：2022-03-18 22:50:54 / 修改时间：23:12:45" itemprop="dateCreated datePublished" datetime="2022-03-18T22:50:54+08:00">2022-03-18</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/oi/" itemprop="url" rel="index"><span itemprop="name">oi</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2022/03/18/%E7%AE%97%E6%B3%95%E5%B0%8F%E6%84%9F%E6%82%9F/" class="post-meta-item leancloud_visitors" data-flag-title="算法小感悟" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2022/03/18/%E7%AE%97%E6%B3%95%E5%B0%8F%E6%84%9F%E6%82%9F/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2022/03/18/%E7%AE%97%E6%B3%95%E5%B0%8F%E6%84%9F%E6%82%9F/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
   
 
-</div>
+        </div>
+      </header>
 
-</header>
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-      
-      
-      <div class="post-body">
-          <p><strong>AFOer</strong></p>
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>这里主要记录一下我在学习过程中的一些小感悟，或是想法…</p>
+<h1 id="二分"><a href="#二分" class="headerlink" title="二分"></a>二分</h1><ul>
+<li><p>其实应该说是对于 X 分都适用，这类算法都需要着重注意<strong>溢出</strong>及<strong>边界</strong>的问题，一个经典的例子如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">bsearch</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y, <span class="keyword">int</span> v)</span></span>&#123; <span class="comment">// 经典二分查找</span></span><br><span class="line">	<span class="keyword">int</span> m;</span><br><span class="line">	<span class="keyword">while</span>(x &lt; y)&#123; <span class="comment">// 边界注意</span></span><br><span class="line">    	m = x + (y - x) / <span class="number">2</span>; <span class="comment">// 防溢出处理</span></span><br><span class="line">    	<span class="keyword">if</span>(A[m] == v) <span class="keyword">return</span> m;</span><br><span class="line">    	<span class="keyword">else</span> <span class="keyword">if</span>(A[m] &gt; v) y = m;</span><br><span class="line">    	<span class="keyword">else</span> x = m + <span class="number">1</span>;</span><br><span class="line">	&#125; </span><br><span class="line">	<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>显然防溢出还可以用在计算机其他领域，对于<strong>数据的溢出</strong>在编程时应多多注意。</p>
+</li>
+</ul>
+<h1 id="分治"><a href="#分治" class="headerlink" title="分治"></a>分治</h1><ul>
+<li>分治题一般需注意思考<strong>拆分</strong>方法。如何<strong>拆分</strong>，怎样<strong>定义子结构</strong>很重要。（定义子结构对于 dp 也很重要）</li>
+</ul>
+<h1 id="贪心"><a href="#贪心" class="headerlink" title="贪心"></a>贪心</h1><ul>
+<li><p>关于<strong>单调性</strong></p>
+<p>贪心题型多伴随单调性出现，找到题目中<strong>隐藏的单调性</strong>对于解题与证明算法正确性有很大的帮助，举一个例子：</p>
+<blockquote>
+<p><strong>乘船问题</strong> 。有 $n$ 个人，第 $i$ 个人的重量为 $w_{i}$ 。每艘船最大承重量为 $C$，求最少几艘船可以渡过所有人。</p>
+</blockquote>
+<p>乘船问题其实很简单，但我们需要注意其中的思想。若你想证明做法的正确性，且使用的反证法，证明过程中会出现<strong>船数不会增加</strong>、<strong>新解不会更差</strong>这样的字眼，这些都是很经典的单调性在证明中的应用，需要好好感受。</p>
+</li>
+<li><p>关于<strong>最优子结构</strong></p>
+<p>我一开始对该概念一直一知半解，最近开始有点感觉。</p>
+<p><strong>最优子结构</strong>定义：当你对数据的子结构取到最优解时，整体也是最优解。</p>
+<p>找最优子结构时需注意<strong>等价关系</strong>，详细的说就是，一般你需要先定义如何表示状态，再寻找转化状态的方法。在这过程中你会发现你需要解决的问题规模缩小了，类似于分治的感觉。</p>
+<p>需要注意的是当你对最小的子结构进行算法时要注意自己在这过程中的正确性。（一般很少会去注意它，但这其实很重要）</p>
+</li>
+</ul>
 
-      </div>
-      
-      
-      
     </div>
-    
 
     
     
     
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/oi/" rel="tag"># oi</a>
+              <a href="/tags/%E4%BA%8C%E5%88%86/" rel="tag"># 二分</a>
+              <a href="/tags/%E8%B4%AA%E5%BF%83/" rel="tag"># 贪心</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/03/18/%E6%9C%80%E7%9F%AD%E8%B7%AF%E6%9D%82%E8%B0%88/" rel="prev" title="最短路杂谈">
+      <i class="fa fa-chevron-left"></i> 最短路杂谈
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
 
 
           </div>
@@ -253,6 +357,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8C%E5%88%86"><span class="nav-number">2.</span> <span class="nav-text">二分</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%86%E6%B2%BB"><span class="nav-number">3.</span> <span class="nav-text">分治</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%B4%AA%E5%BF%83"><span class="nav-number">4.</span> <span class="nav-text">贪心</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
