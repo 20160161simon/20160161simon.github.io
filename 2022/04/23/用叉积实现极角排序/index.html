@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"20160161simon.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"valine","storage":true,"lazyload":false,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":-1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="前言遇到了一道需要极角排序的题，发现网上没有很清楚的叉积实现教程，就自己写一篇。 为什么用叉积在 oi 中会有很多需要对某两个向量按顺时针或逆时针顺序排序的时候，这时如果使用反三角函数则很多时候会出现精度问题，这时若使用叉积则可以准确快捷对极角排序。 怎么用叉积叉积可以用行列式来作一个较为直观的定义：  u\times v &#x3D; \begin{vmatrix} i &amp; j &amp; k \\ u_i &amp;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="用叉积实现极角排序">
+<meta property="og:url" content="https://20160161simon.github.io/2022/04/23/%E7%94%A8%E5%8F%89%E7%A7%AF%E5%AE%9E%E7%8E%B0%E6%9E%81%E8%A7%92%E6%8E%92%E5%BA%8F/index.html">
+<meta property="og:site_name" content="20160161simon&#39;s Blog">
+<meta property="og:description" content="前言遇到了一道需要极角排序的题，发现网上没有很清楚的叉积实现教程，就自己写一篇。 为什么用叉积在 oi 中会有很多需要对某两个向量按顺时针或逆时针顺序排序的时候，这时如果使用反三角函数则很多时候会出现精度问题，这时若使用叉积则可以准确快捷对极角排序。 怎么用叉积叉积可以用行列式来作一个较为直观的定义：  u\times v &#x3D; \begin{vmatrix} i &amp; j &amp; k \\ u_i &amp;">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-04-23T14:18:57.000Z">
+<meta property="article:modified_time" content="2022-04-24T12:49:41.429Z">
+<meta property="article:author" content="20160161simon">
+<meta property="article:tag" content="oi">
+<meta property="article:tag" content="几何">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://20160161simon.github.io/2022/04/23/%E7%94%A8%E5%8F%89%E7%A7%AF%E5%AE%9E%E7%8E%B0%E6%9E%81%E8%A7%92%E6%8E%92%E5%BA%8F/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>用叉积实现极角排序 | 20160161simon's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">20160161simon's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-comments">
+
+    <a href="/comments/" rel="section"><i class="fa fa-comments fa-fw"></i>留言区</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://20160161simon.github.io/2022/04/23/%E7%94%A8%E5%8F%89%E7%A7%AF%E5%AE%9E%E7%8E%B0%E6%9E%81%E8%A7%92%E6%8E%92%E5%BA%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="20160161simon">
+      <meta itemprop="description" content="20160161simon的博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="20160161simon's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          用叉积实现极角排序
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-04-23 22:18:57" itemprop="dateCreated datePublished" datetime="2022-04-23T22:18:57+08:00">2022-04-23</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-04-24 20:49:41" itemprop="dateModified" datetime="2022-04-24T20:49:41+08:00">2022-04-24</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/oi/" itemprop="url" rel="index"><span itemprop="name">oi</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/oi/%E5%87%A0%E4%BD%95/" itemprop="url" rel="index"><span itemprop="name">几何</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2022/04/23/%E7%94%A8%E5%8F%89%E7%A7%AF%E5%AE%9E%E7%8E%B0%E6%9E%81%E8%A7%92%E6%8E%92%E5%BA%8F/" class="post-meta-item leancloud_visitors" data-flag-title="用叉积实现极角排序" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2022/04/23/%E7%94%A8%E5%8F%89%E7%A7%AF%E5%AE%9E%E7%8E%B0%E6%9E%81%E8%A7%92%E6%8E%92%E5%BA%8F/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2022/04/23/%E7%94%A8%E5%8F%89%E7%A7%AF%E5%AE%9E%E7%8E%B0%E6%9E%81%E8%A7%92%E6%8E%92%E5%BA%8F/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>遇到了一道需要极角排序的题，发现网上没有很清楚的叉积实现教程，就自己写一篇。</p>
+<h1 id="为什么用叉积"><a href="#为什么用叉积" class="headerlink" title="为什么用叉积"></a>为什么用叉积</h1><p>在 oi 中会有很多需要对某两个向量按顺时针或逆时针顺序排序的时候，这时如果使用反三角函数则很多时候会出现精度问题，这时若使用叉积则可以准确快捷对极角排序。</p>
+<h1 id="怎么用叉积"><a href="#怎么用叉积" class="headerlink" title="怎么用叉积"></a>怎么用叉积</h1><p>叉积可以用行列式来作一个较为直观的定义：</p>
+<script type="math/tex; mode=display">
+u\times v =
+\begin{vmatrix}
+i & j & k \\
+u_i & u_j & u_k \\
+v_i & v_j & v_k
+\end{vmatrix}\tag{1}</script><p>当然也有如下定义：</p>
+<script type="math/tex; mode=display">
+u\times v=|u||v|sin<u,v>\vec{n} \tag{2}</script><p>其中定义 (1) 向我们提供一种计算机的简便算法，而定义 (2) 向我们直观的解释了如何使用定义 (1) 的结果。</p>
+<p>由于我们需要排序的向量为 2 维，故有 $\boldsymbol{u\times v=ak}$ 其中根据定义 (2) 我们知道<strong>当 $\boldsymbol{a}$ 为 正时 $\boldsymbol{u}$ 到 $\boldsymbol{v}$ 为顺时针，反之则逆时针</strong></p>
+<h1 id="具体代码"><a href="#具体代码" class="headerlink" title="具体代码"></a>具体代码</h1><p><strong>用 c++ 实现</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">vec c;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">dis</span><span class="params">(vec a)</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> a.x*a.x+a.y*a.y;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">cross</span><span class="params">(vec u,vec v)</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> u.x*v.y-u.y*v.x;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">cmp</span><span class="params">(vec a,vec b)</span></span>&#123;</span><br><span class="line">	node u=(node)&#123;a.x-c.x,a.y-c.y&#125;,v=(node)&#123;b.x-c.x,b.y-c.y&#125;</span><br><span class="line">	<span class="keyword">int</span> f=<span class="built_in">cross</span>(u,v);</span><br><span class="line">	<span class="keyword">if</span>(f&gt;<span class="number">0</span>) <span class="keyword">return</span> <span class="number">1</span> </span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span>(f&lt;<span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">return</span> <span class="built_in">dis</span>(u)&lt;<span class="built_in">dis</span>(v);<span class="comment">//注意有可能极角相等</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这边代码看完你可能会有一个和我一样的疑问：这个 <code>cmp</code> 很明显是会成一个环，这样没问题吗？</p>
+<p>答案是没问题的，因为在多数题中，我们只需要一个合理好操作的操作顺序，而不是严格的极角排序。</p>
+<h1 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h1><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/remoteJudgeRedirect/uva/1606">UVA1606 两亲性分子 Amphiphilic Carbon Molecules</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/oi/" rel="tag"># oi</a>
+              <a href="/tags/%E5%87%A0%E4%BD%95/" rel="tag"># 几何</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/04/21/%E6%95%B0%E8%AE%BA/" rel="prev" title="数论">
+      <i class="fa fa-chevron-left"></i> 数论
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/04/29/1471-Defense-Lines/" rel="next" title="UVA1471 - Defense Lines">
+      UVA1471 - Defense Lines <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E7%94%A8%E5%8F%89%E7%A7%AF"><span class="nav-number">2.</span> <span class="nav-text">为什么用叉积</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%80%8E%E4%B9%88%E7%94%A8%E5%8F%89%E7%A7%AF"><span class="nav-number">3.</span> <span class="nav-text">怎么用叉积</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%B7%E4%BD%93%E4%BB%A3%E7%A0%81"><span class="nav-number">4.</span> <span class="nav-text">具体代码</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98"><span class="nav-number">5.</span> <span class="nav-text">例题</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="20160161simon"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">20160161simon</p>
+  <div class="site-description" itemprop="description">20160161simon的博客</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">13</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/20160161simon" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;20160161simon" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">20160161simon</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : '9EJ9pBq9joeNzobXnyOe4Gjb-MdYXbMMI',
+      appKey     : 'KMJP9ViuLmYr9NLltFBh1IPI',
+      placeholder: "输入你的评论",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : true,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : true,
+      serverURLs : 'https://9EJ9pBq9.api.lncldglobal.com'
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>
