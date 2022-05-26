@@ -23,18 +23,21 @@
   <meta name="description" content="前言众所周知，oi 是一门致力用计算机解决数学模型的比赛，故数论在 oi 中起到举足轻重的作用。 素数埃氏筛全称 “埃拉托斯特尼筛法” 基础版本 $O(nloglogn)$利用：若一个数是合数则它必定被一个小于自己的数整除。  若一个数没被比它小的数除过，那么他就是质数。 用质数把范围内它除自身的倍数都标记一遍。  12345678910void Eratos(int n)&amp;#123;	vecto">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数论">
-<meta property="og:url" content="https://20160161simon.github.io/2022/04/21/%E6%95%B0%E8%AE%BA/index.html">
+<meta property="og:url" content="https://20160161simon.github.io/2022/05/26/%E6%95%B0%E8%AE%BA/index.html">
 <meta property="og:site_name" content="20160161simon&#39;s Blog">
 <meta property="og:description" content="前言众所周知，oi 是一门致力用计算机解决数学模型的比赛，故数论在 oi 中起到举足轻重的作用。 素数埃氏筛全称 “埃拉托斯特尼筛法” 基础版本 $O(nloglogn)$利用：若一个数是合数则它必定被一个小于自己的数整除。  若一个数没被比它小的数除过，那么他就是质数。 用质数把范围内它除自身的倍数都标记一遍。  12345678910void Eratos(int n)&amp;#123;	vecto">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-04-21T15:42:17.000Z">
-<meta property="article:modified_time" content="2022-04-21T16:22:56.245Z">
+<meta property="og:image" content="d:/study/program/blog/source/images/400px-Catalan-Hexagons-example.svg.png">
+<meta property="article:published_time" content="2022-05-26T11:45:28.000Z">
+<meta property="article:modified_time" content="2022-05-26T11:53:44.533Z">
 <meta property="article:author" content="20160161simon">
 <meta property="article:tag" content="oi">
 <meta property="article:tag" content="数论">
+<meta property="article:tag" content="质数筛">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="d:/study/program/blog/source/images/400px-Catalan-Hexagons-example.svg.png">
 
-<link rel="canonical" href="https://20160161simon.github.io/2022/04/21/%E6%95%B0%E8%AE%BA/">
+<link rel="canonical" href="https://20160161simon.github.io/2022/05/26/%E6%95%B0%E8%AE%BA/">
 
 
 <script id="page-configurations">
@@ -173,7 +176,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://20160161simon.github.io/2022/04/21/%E6%95%B0%E8%AE%BA/">
+    <link itemprop="mainEntityOfPage" href="https://20160161simon.github.io/2022/05/26/%E6%95%B0%E8%AE%BA/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -195,16 +198,10 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2022-04-21 23:42:17" itemprop="dateCreated datePublished" datetime="2022-04-21T23:42:17+08:00">2022-04-21</time>
+              <time title="创建时间：2022-05-26 19:45:28 / 修改时间：19:53:44" itemprop="dateCreated datePublished" datetime="2022-05-26T19:45:28+08:00">2022-05-26</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-04-22 00:22:56" itemprop="dateModified" datetime="2022-04-22T00:22:56+08:00">2022-04-22</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -220,7 +217,7 @@
             </span>
 
           
-            <span id="/2022/04/21/%E6%95%B0%E8%AE%BA/" class="post-meta-item leancloud_visitors" data-flag-title="数论" title="阅读次数">
+            <span id="/2022/05/26/%E6%95%B0%E8%AE%BA/" class="post-meta-item leancloud_visitors" data-flag-title="数论" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -242,8 +239,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2022/04/21/%E6%95%B0%E8%AE%BA/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2022/04/21/%E6%95%B0%E8%AE%BA/" itemprop="commentCount"></span>
+    <a title="valine" href="/2022/05/26/%E6%95%B0%E8%AE%BA/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2022/05/26/%E6%95%B0%E8%AE%BA/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -272,6 +269,24 @@
 <p>$n$ 会被分解成 $p_1 \times \frac{n}{p_1}$ 标记，这个比较显然。</p>
 <p>若 $n$ 被分解成 $p_0\times \frac{n}{p_0}$ 且 $p_0&gt;p_1$ , $p_0$ 为一质数</p>
 <p>则显然会被 <code>break</code> 掉，因为 $p_1 | \frac{n}{p_0}$ </p>
+<hr>
+<p>事实上，埃氏筛也能用于计算积性函数，这是一个常见的技巧。</p>
+<h2 id="素数定理"><a href="#素数定理" class="headerlink" title="素数定理"></a>素数定理</h2><script type="math/tex; mode=display">
+\pi(x) \sim \frac{x}{lnx}</script><p>用来估计质数，$\pi(x)$ 表示小于 $x$ 的质数数量。</p>
+<h1 id="卡特兰数（Catalan）"><a href="#卡特兰数（Catalan）" class="headerlink" title="卡特兰数（Catalan）"></a>卡特兰数（Catalan）</h1><p>用 $n-3$ 条对角线把凸 $n$ 边形 划分成三角形的方案。下文用 $d(n)$ 表示第 $n$ 个卡特兰数</p>
+<p><img src="D:\study\program\blog\source\images\400px-Catalan-Hexagons-example.svg.png" alt="卡塔兰数- 维基百科，自由的百科全书"></p>
+<h2 id="计数方法-1-三角形切割"><a href="#计数方法-1-三角形切割" class="headerlink" title="计数方法 1 (三角形切割)"></a>计数方法 1 (三角形切割)</h2><p>先定一个三角形 $P_1P_nP_k$ 它把多边形左右两边划分成了 $k$ 边形和 $n-k+1$ 边形。为方便起见，我们把一边不存在多边形的情况定义为 “$2$ 边形” ，它的方案数为 $1$ 。</p>
+<script type="math/tex; mode=display">
+d(2)=d(3)=1\\
+d(n)=d(2)d(n-1)+d(3)d(n-2)+\cdots+d(n-2)d(3)+d(n-1)d(2)</script><p>顺便思考下它是否会重复计算，答案显然是不会的。</p>
+<h2 id="计数方法-2-对角线切割"><a href="#计数方法-2-对角线切割" class="headerlink" title="计数方法 2 (对角线切割)"></a>计数方法 2 (对角线切割)</h2><p>用 $P_iP_j$ 来切割 $n$ 边形，这里不考虑 $P_iP_j$ 为边或 $i=j$ 的情况。若 $i=1$ ，它切割 $n$ 变形为 $j$ 边形和 $n-j+2$ 边形。把 $i=1,2,3\dots$ 带入有</p>
+<script type="math/tex; mode=display">
+d(n)=n(d(3)d(n-1)+d(4)d(n-2)+\cdots+d(n-2)d(4)+d(n-1)d(3))</script><p>考虑它是否重复计算，答案是肯定的。从方案考虑，在一个方案中存在 $n-3$ 条对角线，而一条对角线会被两个端点各计算一次，故一个方案被计算了 $2n-6$ 次。</p>
+<script type="math/tex; mode=display">
+d(n)=\frac{n}{2n-6}(d(3)d(n-1)+d(4)d(n-2)+\cdots+d(n-2)d(4)+d(n-1)d(3))</script><h2 id="递推公式"><a href="#递推公式" class="headerlink" title="递推公式"></a>递推公式</h2><p>综合 <strong>计算方法 1</strong> 和 <strong>计算方法 2</strong> 我们有</p>
+<script type="math/tex; mode=display">
+d(3)=1 \\
+d(n+1)=\frac{4n-6}{n}d(n)</script><p>这就是卡特兰数的递推公式。</p>
 
     </div>
 
@@ -283,6 +298,7 @@
           <div class="post-tags">
               <a href="/tags/oi/" rel="tag"># oi</a>
               <a href="/tags/%E6%95%B0%E8%AE%BA/" rel="tag"># 数论</a>
+              <a href="/tags/%E8%B4%A8%E6%95%B0%E7%AD%9B/" rel="tag"># 质数筛</a>
           </div>
 
         
@@ -291,13 +307,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2022/03/25/UVA11054-Wine-trading-in-Gergovia/" rel="prev" title="UVA11054 Wine trading in Gergovia">
-      <i class="fa fa-chevron-left"></i> UVA11054 Wine trading in Gergovia
+    <a href="/2022/05/25/contest/apio-2022-practice-session/" rel="prev" title="apio 2022 practice session">
+      <i class="fa fa-chevron-left"></i> apio 2022 practice session
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2022/04/23/%E7%94%A8%E5%8F%89%E7%A7%AF%E5%AE%9E%E7%8E%B0%E6%9E%81%E8%A7%92%E6%8E%92%E5%BA%8F/" rel="next" title="用叉积实现极角排序">
-      用叉积实现极角排序 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -357,7 +370,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%B4%A0%E6%95%B0"><span class="nav-number">2.</span> <span class="nav-text">素数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%83%E6%B0%8F%E7%AD%9B"><span class="nav-number">2.1.</span> <span class="nav-text">埃氏筛</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80%E7%89%88%E6%9C%AC-O-nloglogn"><span class="nav-number">2.1.1.</span> <span class="nav-text">基础版本 $O(nloglogn)$</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9B%E9%98%B6%E7%89%88-O-n"><span class="nav-number">2.1.2.</span> <span class="nav-text">进阶版 $O(n)$</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%B4%A0%E6%95%B0"><span class="nav-number">2.</span> <span class="nav-text">素数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%83%E6%B0%8F%E7%AD%9B"><span class="nav-number">2.1.</span> <span class="nav-text">埃氏筛</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80%E7%89%88%E6%9C%AC-O-nloglogn"><span class="nav-number">2.1.1.</span> <span class="nav-text">基础版本 $O(nloglogn)$</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9B%E9%98%B6%E7%89%88-O-n"><span class="nav-number">2.1.2.</span> <span class="nav-text">进阶版 $O(n)$</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B4%A0%E6%95%B0%E5%AE%9A%E7%90%86"><span class="nav-number">2.2.</span> <span class="nav-text">素数定理</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8D%A1%E7%89%B9%E5%85%B0%E6%95%B0%EF%BC%88Catalan%EF%BC%89"><span class="nav-number">3.</span> <span class="nav-text">卡特兰数（Catalan）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%A1%E6%95%B0%E6%96%B9%E6%B3%95-1-%E4%B8%89%E8%A7%92%E5%BD%A2%E5%88%87%E5%89%B2"><span class="nav-number">3.1.</span> <span class="nav-text">计数方法 1 (三角形切割)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%A1%E6%95%B0%E6%96%B9%E6%B3%95-2-%E5%AF%B9%E8%A7%92%E7%BA%BF%E5%88%87%E5%89%B2"><span class="nav-number">3.2.</span> <span class="nav-text">计数方法 2 (对角线切割)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%92%E6%8E%A8%E5%85%AC%E5%BC%8F"><span class="nav-number">3.3.</span> <span class="nav-text">递推公式</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -386,7 +399,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">29</span>
+        <span class="site-state-item-count">30</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

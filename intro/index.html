@@ -168,6 +168,130 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://20160161simon.github.io/2022/05/26/%E6%95%B0%E8%AE%BA/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="20160161simon">
+      <meta itemprop="description" content="20160161simon的博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="20160161simon's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/05/26/%E6%95%B0%E8%AE%BA/" class="post-title-link" itemprop="url">数论</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-05-26 19:45:28 / 修改时间：19:53:44" itemprop="dateCreated datePublished" datetime="2022-05-26T19:45:28+08:00">2022-05-26</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/oi/" itemprop="url" rel="index"><span itemprop="name">oi</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/oi/%E6%95%B0%E8%AE%BA/" itemprop="url" rel="index"><span itemprop="name">数论</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2022/05/26/%E6%95%B0%E8%AE%BA/" class="post-meta-item leancloud_visitors" data-flag-title="数论" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2022/05/26/%E6%95%B0%E8%AE%BA/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2022/05/26/%E6%95%B0%E8%AE%BA/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>众所周知，oi 是一门致力用计算机解决数学模型的比赛，故数论在 oi 中起到举足轻重的作用。</p>
+<h1 id="素数"><a href="#素数" class="headerlink" title="素数"></a>素数</h1><h2 id="埃氏筛"><a href="#埃氏筛" class="headerlink" title="埃氏筛"></a>埃氏筛</h2><p>全称 “埃拉托斯特尼筛法”</p>
+<h3 id="基础版本-O-nloglogn"><a href="#基础版本-O-nloglogn" class="headerlink" title="基础版本 $O(nloglogn)$"></a>基础版本 $O(nloglogn)$</h3><p>利用：若一个数是合数则它必定被一个小于自己的数整除。</p>
+<ul>
+<li>若一个数没被比它小的数除过，那么他就是质数。</li>
+<li>用质数把范围内它除自身的倍数都标记一遍。</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Eratos</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">	<span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">is_prime</span><span class="params">(n + <span class="number">1</span>, <span class="number">1</span>)</span></span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= n; i++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(is_prime[i])&#123;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> j = i * i; j &lt;= n; j += i)</span><br><span class="line">				<span class="comment">// 2xi ~ (i-1)xi 如果要筛已经筛过了 </span></span><br><span class="line">				is_prime[j] = <span class="number">0</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="进阶版-O-n"><a href="#进阶版-O-n" class="headerlink" title="进阶版 $O(n)$"></a>进阶版 $O(n)$</h3><p>线性筛建立在这一件事上：合数被筛了多次，于是我们要想办法让<strong>合数只被自己最小的质因数除过</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= n; i++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(!vis[i]) pri[++cnt] = i; </span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= cnt; j++)&#123;</span><br><span class="line">			<span class="keyword">if</span>(pri[j] * i &gt; n) <span class="keyword">break</span>;</span><br><span class="line">			vis[i * pri[j]] = <span class="number">1</span>;</span><br><span class="line">			<span class="keyword">if</span>(i % pri[j] == <span class="number">0</span>) <span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>证明一下算法正确性，令 $n=p_{1}^{k_1}\cdot  p_{2}^{k_2} \cdot  \cdot  \cdot  p_n^{k_n}$</p>
+<p>$n$ 会被分解成 $p_1 \times \frac{n}{p_1}$ 标记，这个比较显然。</p>
+<p>若 $n$ 被分解成 $p_0\times \frac{n}{p_0}$ 且 $p_0&gt;p_1$ , $p_0$ 为一质数</p>
+<p>则显然会被 <code>break</code> 掉，因为 $p_1 | \frac{n}{p_0}$ </p>
+<hr>
+<p>事实上，埃氏筛也能用于计算积性函数，这是一个常见的技巧。</p>
+<h2 id="素数定理"><a href="#素数定理" class="headerlink" title="素数定理"></a>素数定理</h2><script type="math/tex; mode=display">
+\pi(x) \sim \frac{x}{lnx}</script><p>用来估计质数，$\pi(x)$ 表示小于 $x$ 的质数数量。</p>
+<h1 id="卡特兰数（Catalan）"><a href="#卡特兰数（Catalan）" class="headerlink" title="卡特兰数（Catalan）"></a>卡特兰数（Catalan）</h1><p>用 $n-3$ 条对角线把凸 $n$ 边形 划分成三角形的方案。下文用 $d(n)$ 表示第 $n$ 个卡特兰数</p>
+<p><img src="D:\study\program\blog\source\images\400px-Catalan-Hexagons-example.svg.png" alt="卡塔兰数- 维基百科，自由的百科全书"></p>
+<h2 id="计数方法-1-三角形切割"><a href="#计数方法-1-三角形切割" class="headerlink" title="计数方法 1 (三角形切割)"></a>计数方法 1 (三角形切割)</h2><p>先定一个三角形 $P_1P_nP_k$ 它把多边形左右两边划分成了 $k$ 边形和 $n-k+1$ 边形。为方便起见，我们把一边不存在多边形的情况定义为 “$2$ 边形” ，它的方案数为 $1$ 。</p>
+<script type="math/tex; mode=display">
+d(2)=d(3)=1\\
+d(n)=d(2)d(n-1)+d(3)d(n-2)+\cdots+d(n-2)d(3)+d(n-1)d(2)</script><p>顺便思考下它是否会重复计算，答案显然是不会的。</p>
+<h2 id="计数方法-2-对角线切割"><a href="#计数方法-2-对角线切割" class="headerlink" title="计数方法 2 (对角线切割)"></a>计数方法 2 (对角线切割)</h2><p>用 $P_iP_j$ 来切割 $n$ 边形，这里不考虑 $P_iP_j$ 为边或 $i=j$ 的情况。若 $i=1$ ，它切割 $n$ 变形为 $j$ 边形和 $n-j+2$ 边形。把 $i=1,2,3\dots$ 带入有</p>
+<script type="math/tex; mode=display">
+d(n)=n(d(3)d(n-1)+d(4)d(n-2)+\cdots+d(n-2)d(4)+d(n-1)d(3))</script><p>考虑它是否重复计算，答案是肯定的。从方案考虑，在一个方案中存在 $n-3$ 条对角线，而一条对角线会被两个端点各计算一次，故一个方案被计算了 $2n-6$ 次。</p>
+<script type="math/tex; mode=display">
+d(n)=\frac{n}{2n-6}(d(3)d(n-1)+d(4)d(n-2)+\cdots+d(n-2)d(4)+d(n-1)d(3))</script><h2 id="递推公式"><a href="#递推公式" class="headerlink" title="递推公式"></a>递推公式</h2><p>综合 <strong>计算方法 1</strong> 和 <strong>计算方法 2</strong> 我们有</p>
+<script type="math/tex; mode=display">
+d(3)=1 \\
+d(n+1)=\frac{4n-6}{n}d(n)</script><p>这就是卡特兰数的递推公式。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://20160161simon.github.io/2022/05/25/contest/apio-2022-practice-session/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1181,108 +1305,6 @@ dp[i][j]=\sum\limits_{x\in i}a[x][j]</script><p>但这玩意暴力转移总时�
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://20160161simon.github.io/2022/04/29/1471-Defense-Lines/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="20160161simon">
-      <meta itemprop="description" content="20160161simon的博客">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="20160161simon's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/04/29/1471-Defense-Lines/" class="post-title-link" itemprop="url">UVA1471 - Defense Lines</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2022-04-29 16:00:39 / 修改时间：16:12:01" itemprop="dateCreated datePublished" datetime="2022-04-29T16:00:39+08:00">2022-04-29</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/oi/" itemprop="url" rel="index"><span itemprop="name">oi</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/oi/%E8%B4%AA%E5%BF%83/" itemprop="url" rel="index"><span itemprop="name">贪心</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2022/04/29/1471-Defense-Lines/" class="post-meta-item leancloud_visitors" data-flag-title="UVA1471 - Defense Lines" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2022/04/29/1471-Defense-Lines/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2022/04/29/1471-Defense-Lines/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><a target="_blank" rel="noopener" href="https://onlinejudge.org/index.php?option=com_onlinejudge&amp;Itemid=8&amp;page=show_problem&amp;problem=4217">题目链接</a></p>
-<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>令 $r[i]$ 表示 $i$ 结尾最长严格上升序列，$l[i]$ 表示 $i$ 开头最长严格上升序列，原序列为 $a$</p>
-<p>这两个序列都可以用 $O(n)$ 求得</p>
-<p>只要能对于 $i$ 用较快时间找到相对应的 $r[i]$ 就可以解决这道题</p>
-<p>观察到原题明显具有单调性的味道，故想到维护一个具有单调性的 $r[i]$ 序列</p>
-<p>对于 $x$ 与 $i,j&lt;x$ 先假设 $a[i],a[j]&lt;a[x]$ 那么若 $a[i]&lt;a[j]$ 且 $l[j]&lt;=r[j]$ 那么 $j$ 就没有存在必要了，因为无论如何 $i$ 更优</p>
-<p>根据上面这个性质可以想到维护一个集合 $s$ 其中，若 $a[i]&lt;a[j]$ 则 $r[i]&lt;r[j]$ 由于 c++ 中 set 可以用 lower_bound() 故可以通过 $O(nlogn)$ 解决这道题。</p>
-<p>该题对指针理解要求较高，并有一些细节需要注意，我的程式属于写麻烦了，大家可以自行优化程序结构。</p>
-<h1 id="时间复杂度"><a href="#时间复杂度" class="headerlink" title="时间复杂度"></a>时间复杂度</h1><p>$O(nlogn)$</p>
-<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="function">ll <span class="title">read</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">char</span> c=<span class="built_in">getchar</span>();<span class="keyword">bool</span> flag=<span class="number">0</span>;ll x=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(c&lt;<span class="string">&#x27;0&#x27;</span>||c&gt;<span class="string">&#x27;9&#x27;</span>)&#123;<span class="keyword">if</span>(c==<span class="string">&#x27;-&#x27;</span>)flag=<span class="number">1</span>;c=<span class="built_in">getchar</span>();&#125;</span><br><span class="line">    <span class="keyword">while</span>(c&gt;=<span class="string">&#x27;0&#x27;</span>&amp;&amp;c&lt;=<span class="string">&#x27;9&#x27;</span>)&#123;x=(x&lt;&lt;<span class="number">3</span>)+(x&lt;&lt;<span class="number">1</span>)+c-<span class="string">&#x27;0&#x27;</span>;c=<span class="built_in">getchar</span>();&#125;</span><br><span class="line">    <span class="keyword">return</span> flag?-x:x;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> ll N=<span class="number">2e5</span>+<span class="number">10</span>;</span><br><span class="line">ll a[N],r[N],l[N],b[N];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    ll T=<span class="built_in">read</span>();</span><br><span class="line">    <span class="keyword">while</span>(T--)&#123;</span><br><span class="line">        ll n=<span class="built_in">read</span>();</span><br><span class="line">        <span class="keyword">for</span>(ll i=<span class="number">1</span>;i&lt;=n;i++) a[i]=<span class="built_in">read</span>();</span><br><span class="line">        r[<span class="number">1</span>]=<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(ll i=<span class="number">2</span>;i&lt;=n;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(a[i]&gt;a[i<span class="number">-1</span>]) r[i]=r[i<span class="number">-1</span>]+<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">else</span> r[i]=<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        l[n]=<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(ll i=n<span class="number">-1</span>;i&gt;=<span class="number">1</span>;i--)&#123;</span><br><span class="line">            <span class="keyword">if</span>(a[i]&lt;a[i+<span class="number">1</span>]) l[i]=l[i+<span class="number">1</span>]+<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">else</span> l[i]=<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        ll ans=l[<span class="number">1</span>],mx=a[<span class="number">1</span>];</span><br><span class="line">        set&lt;ll&gt; s;</span><br><span class="line">        map&lt;ll,ll&gt; k;</span><br><span class="line">        s.<span class="built_in">insert</span>(a[<span class="number">1</span>]),k[a[<span class="number">1</span>]]=r[<span class="number">1</span>];</span><br><span class="line">        <span class="keyword">for</span>(ll i=<span class="number">2</span>;i&lt;=n;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(mx&lt;a[i])&#123;</span><br><span class="line">                ans=<span class="built_in">max</span>(ans,k[mx]+l[i]);</span><br><span class="line">                <span class="keyword">if</span>(r[i]&gt;k[mx])&#123;</span><br><span class="line">                	s.<span class="built_in">insert</span>(a[i]),k[a[i]]=r[i];</span><br><span class="line">                	mx=a[i];</span><br><span class="line">				&#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span>&#123;</span><br><span class="line">                set&lt;ll&gt;::iterator p = s.<span class="built_in">lower_bound</span>(a[i]);</span><br><span class="line">                <span class="keyword">if</span>(p==s.<span class="built_in">begin</span>())&#123;</span><br><span class="line">                    ans=<span class="built_in">max</span>(ans,l[i]);</span><br><span class="line">                    <span class="keyword">if</span>( *p == a[i] )&#123;</span><br><span class="line">                        k[a[i]]=<span class="built_in">max</span>(k[a[i]],r[i]);</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">else</span>&#123;</span><br><span class="line">                    	ll top=<span class="number">0</span>,flag=<span class="number">1</span>;</span><br><span class="line">                    	<span class="keyword">for</span>(set&lt;ll&gt;::iterator it = s.<span class="built_in">begin</span>(); it!=s.<span class="built_in">end</span>() ; it++)&#123;</span><br><span class="line">                    		<span class="keyword">if</span>(r[i]&gt;=k[*it]) b[++top]=*it;</span><br><span class="line">							<span class="keyword">else</span>&#123;</span><br><span class="line">								flag=<span class="number">0</span>;</span><br><span class="line">								<span class="keyword">break</span>;</span><br><span class="line">							&#125;</span><br><span class="line">						&#125;</span><br><span class="line">						<span class="keyword">for</span>(ll j=<span class="number">1</span>;j&lt;=top;j++) s.<span class="built_in">erase</span>(b[j]);</span><br><span class="line">						<span class="keyword">if</span>(flag) mx=a[i];</span><br><span class="line">                        s.<span class="built_in">insert</span>(a[i]),k[a[i]]=r[i];</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span>&#123;</span><br><span class="line">                    p--;</span><br><span class="line">                    ans=<span class="built_in">max</span>(ans,k[*(p)]+l[i]);</span><br><span class="line">                    p++;</span><br><span class="line">                    <span class="keyword">if</span>(*p==a[i])&#123;</span><br><span class="line">                        k[a[i]]=<span class="built_in">max</span>(k[a[i]],r[i]);</span><br><span class="line">                        <span class="keyword">continue</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                    ll top=<span class="number">0</span>,flag=<span class="number">1</span>;</span><br><span class="line">                    p--;</span><br><span class="line">                    <span class="keyword">if</span>(r[i]&lt;=k[*p]) <span class="keyword">continue</span>;</span><br><span class="line">                    p++;</span><br><span class="line">                    <span class="keyword">for</span>(set&lt;ll&gt;::iterator it = p; it!=s.<span class="built_in">end</span>(); it++)&#123;</span><br><span class="line">                        <span class="keyword">if</span>(r[i]&gt;=k[*it]) b[++top]=*it;</span><br><span class="line">                       	<span class="keyword">else</span>&#123;</span><br><span class="line">							flag=<span class="number">0</span>;</span><br><span class="line">							<span class="keyword">break</span>;</span><br><span class="line">						&#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">for</span>(ll j=<span class="number">1</span>;j&lt;=top;j++) s.<span class="built_in">erase</span>(b[j]);</span><br><span class="line">                    <span class="keyword">if</span>(flag) mx=a[i];</span><br><span class="line">                    s.<span class="built_in">insert</span>(a[i]),k[a[i]]=r[i];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>,ans);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1367,7 +1389,7 @@ dp[i][j]=\sum\limits_{x\in i}a[x][j]</script><p>但这玩意暴力转移总时�
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">29</span>
+        <span class="site-state-item-count">30</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
