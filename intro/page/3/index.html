@@ -168,6 +168,221 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://20160161simon.github.io/2022/02/21/python%E5%AD%A6%E4%B9%A0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="20160161simon">
+      <meta itemprop="description" content="20160161simon的博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="20160161simon's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/02/21/python%E5%AD%A6%E4%B9%A0/" class="post-title-link" itemprop="url">python学习</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-02-21 22:11:51" itemprop="dateCreated datePublished" datetime="2022-02-21T22:11:51+08:00">2022-02-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-02-22 00:51:30" itemprop="dateModified" datetime="2022-02-22T00:51:30+08:00">2022-02-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/cs/" itemprop="url" rel="index"><span itemprop="name">cs</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2022/02/21/python%E5%AD%A6%E4%B9%A0/" class="post-meta-item leancloud_visitors" data-flag-title="python学习" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2022/02/21/python%E5%AD%A6%E4%B9%A0/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2022/02/21/python%E5%AD%A6%E4%B9%A0/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="字符编码"><a href="#字符编码" class="headerlink" title="字符编码"></a>字符编码</h1><p>本文仅供本人复习，或他人参考用，不具有教学意义。</p>
+<p>本文均参考自网上，具体可以上 w3cschool，菜鸟进行学习</p>
+<h1 id="基础语法"><a href="#基础语法" class="headerlink" title="基础语法"></a>基础语法</h1><h2 id="编码"><a href="#编码" class="headerlink" title="编码"></a>编码</h2><p>python 默认编码是 <code>utf-8</code> (一种 unicode 的实现方法，可变长度)</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> sys</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>sys.getdefaultencoding()</span><br><span class="line"><span class="string">&#x27;utf-8&#x27;</span></span><br></pre></td></tr></table></figure>
+<h2 id="保留字"><a href="#保留字" class="headerlink" title="保留字"></a>保留字</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> keyword</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>keyword.kwlist</span><br><span class="line">[<span class="string">&#x27;False&#x27;</span>, <span class="string">&#x27;None&#x27;</span>, <span class="string">&#x27;True&#x27;</span>, <span class="string">&#x27;__peg_parser__&#x27;</span>, <span class="string">&#x27;and&#x27;</span>, <span class="string">&#x27;as&#x27;</span>, <span class="string">&#x27;assert&#x27;</span>, <span class="string">&#x27;async&#x27;</span>, <span class="string">&#x27;await&#x27;</span>, <span class="string">&#x27;break&#x27;</span>, <span class="string">&#x27;class&#x27;</span>, <span class="string">&#x27;continue&#x27;</span>, <span class="string">&#x27;def&#x27;</span>, <span class="string">&#x27;del&#x27;</span>, <span class="string">&#x27;elif&#x27;</span>, <span class="string">&#x27;else&#x27;</span>, <span class="string">&#x27;except&#x27;</span>, <span class="string">&#x27;finally&#x27;</span>, <span class="string">&#x27;for&#x27;</span>, <span class="string">&#x27;from&#x27;</span>, <span class="string">&#x27;global&#x27;</span>, <span class="string">&#x27;if&#x27;</span>, <span class="string">&#x27;import&#x27;</span>, <span class="string">&#x27;in&#x27;</span>, <span class="string">&#x27;is&#x27;</span>, <span class="string">&#x27;lambda&#x27;</span>, <span class="string">&#x27;nonlocal&#x27;</span>, <span class="string">&#x27;not&#x27;</span>, <span class="string">&#x27;or&#x27;</span>, <span class="string">&#x27;pass&#x27;</span>, <span class="string">&#x27;raise&#x27;</span>, <span class="string">&#x27;return&#x27;</span>, <span class="string">&#x27;try&#x27;</span>, <span class="string">&#x27;while&#x27;</span>, <span class="string">&#x27;with&#x27;</span>, <span class="string">&#x27;yield&#x27;</span>]</span><br></pre></td></tr></table></figure>
+<h2 id="标识符"><a href="#标识符" class="headerlink" title="标识符"></a>标识符</h2><ul>
+<li>只能 <code>_</code> 或字母开头</li>
+<li>其他部分只能用 <code>_</code> 、数字、字母</li>
+<li>大小写敏感</li>
+</ul>
+<h2 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 单行注释</span></span><br><span class="line"></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">多行注释</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure>
+<h2 id="同一行多条语句"><a href="#同一行多条语句" class="headerlink" title="同一行多条语句"></a>同一行多条语句</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="number">1</span>; b = <span class="number">2</span>; <span class="built_in">print</span>(a+b)</span><br></pre></td></tr></table></figure>
+<h2 id="导入模块"><a href="#导入模块" class="headerlink" title="导入模块"></a>导入模块</h2><p>python 用 <code>import</code> 或 <code>from ... import</code> 来导入模块</p>
+<p>导入整个模块 <code>import module</code></p>
+<p>导入模块中的某几个函数 <code>from module import function_1, function_2, functino_3</code></p>
+<p>导入模块中所有函数 <code>from module import *</code></p>
+<h1 id="输入输出"><a href="#输入输出" class="headerlink" title="输入输出"></a>输入输出</h1><h2 id="end"><a href="#end" class="headerlink" title="end"></a>end</h2><p><code>print(a, end=&#39;&#39;)</code> 控制输入尾巴，默认换行</p>
+<h2 id="输出美化-A"><a href="#输出美化-A" class="headerlink" title="输出美化 A"></a>输出美化 A</h2><p><code>str.format()</code> + <code>repr()</code> + <code>str()</code></p>
+<p><code>repr()</code> : 生成解释器易读的表达形式</p>
+<p><code>str()</code> : 生成用户易读的表达形式</p>
+<h3 id="repr-amp-str"><a href="#repr-amp-str" class="headerlink" title="repr() &amp; str()"></a>repr() &amp; str()</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>s = <span class="string">&#x27;Hello, world.&#x27;</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="built_in">str</span>(s)</span><br><span class="line"><span class="string">&#x27;Hello, world.&#x27;</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="built_in">repr</span>(s)</span><br><span class="line"><span class="string">&quot;&#x27;Hello, world.&#x27;&quot;</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="built_in">str</span>(<span class="number">1</span>/<span class="number">7</span>)</span><br><span class="line"><span class="string">&#x27;0.14285714285714285&#x27;</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>x = <span class="number">10</span> * <span class="number">3.25</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>y = <span class="number">200</span> * <span class="number">200</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>s = <span class="string">&#x27;The value of x is &#x27;</span> + <span class="built_in">repr</span>(x) + <span class="string">&#x27;, and y is &#x27;</span> + <span class="built_in">repr</span>(y) + <span class="string">&#x27;...&#x27;</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="built_in">print</span>(s)</span><br><span class="line">The value of x <span class="keyword">is</span> <span class="number">32.5</span>, <span class="keyword">and</span> y <span class="keyword">is</span> <span class="number">40000.</span>..</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="comment">#  repr() 函数可以转义字符串中的特殊字符</span></span><br><span class="line"><span class="meta">... </span>hello = <span class="string">&#x27;hello, world\n&#x27;</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>hellos = <span class="built_in">repr</span>(hello)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="built_in">print</span>(hellos)</span><br><span class="line"><span class="string">&#x27;hello, world\n&#x27;</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="comment"># repr() 的参数可以是 Python 的任何对象</span></span><br><span class="line"><span class="meta">... </span><span class="built_in">repr</span>((x, y, (<span class="string">&#x27;spam&#x27;</span>, <span class="string">&#x27;eggs&#x27;</span>)))</span><br><span class="line"><span class="string">&quot;(32.5, 40000, (&#x27;spam&#x27;, &#x27;eggs&#x27;))&quot;</span></span><br></pre></td></tr></table></figure>
+<h3 id="format"><a href="#format" class="headerlink" title="format()"></a>format()</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="built_in">print</span>(<span class="string">&#x27;&#123;0&#125; and &#123;2&#125; are &#123;1&#125;&#x27;</span>.<span class="built_in">format</span>(<span class="string">&#x27;aa&#x27;</span>, <span class="string">&#x27;bb&#x27;</span>,<span class="string">&#x27;cc&#x27;</span> ))</span><br><span class="line">aa <span class="keyword">and</span> bb are cc</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="built_in">print</span>(<span class="string">&#x27;&#123;0&#125; and &#123;2&#125; are &#123;1&#125;&#x27;</span>.<span class="built_in">format</span>(<span class="string">&#x27;aa&#x27;</span>, <span class="string">&#x27;bb&#x27;</span>,<span class="string">&#x27;cc&#x27;</span> ))</span><br><span class="line">aa <span class="keyword">and</span> cc are bb</span><br></pre></td></tr></table></figure>
+<p><code>!a</code> : 用 <code>ascii()</code></p>
+<p><code>!s</code> : 用 <code>str()</code></p>
+<p><code>!r</code> : 用 <code>repr()</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> math</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="built_in">print</span>(<span class="string">&#x27;The value of PI is approximately &#123;&#125;.&#x27;</span>.<span class="built_in">format</span>(math.pi))</span><br><span class="line">The value of PI <span class="keyword">is</span> approximately <span class="number">3.14159265359</span>.</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="built_in">print</span>(<span class="string">&#x27;The value of PI is approximately &#123;!r&#125;.&#x27;</span>.<span class="built_in">format</span>(math.pi))</span><br><span class="line">The value of PI <span class="keyword">is</span> approximately <span class="number">3.141592653589793</span>.</span><br></pre></td></tr></table></figure>
+<p>可选 <code>:</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>table = &#123;<span class="string">&#x27;aa&#x27;</span>: <span class="number">123</span>, <span class="string">&#x27;bb&#x27;</span>: <span class="number">456</span>, <span class="string">&#x27;cc&#x27;</span>: <span class="number">7890</span>&#125;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">for</span> name, phone <span class="keyword">in</span> table.items():</span><br><span class="line">	<span class="built_in">print</span>(<span class="string">&#x27;&#123;0:5&#125; ==&gt; &#123;1:5d&#125;&#x27;</span>.<span class="built_in">format</span>(name, phone))</span><br><span class="line"></span><br><span class="line">	</span><br><span class="line">aa    ==&gt;   <span class="number">123</span></span><br><span class="line">bb    ==&gt;   <span class="number">456</span></span><br><span class="line">cc    ==&gt;  <span class="number">7890</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="built_in">print</span>(<span class="string">&#x27;we all know that pi is &#123;:.3f&#125;&#x27;</span>.<span class="built_in">format</span>(math.pi))</span><br><span class="line">we <span class="built_in">all</span> know that pi <span class="keyword">is</span> <span class="number">3.142</span></span><br></pre></td></tr></table></figure>
+<h2 id="输出美化-B"><a href="#输出美化-B" class="headerlink" title="输出美化 B"></a>输出美化 B</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> math</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="built_in">print</span>(<span class="string">&#x27;The value of PI is approximately %5.3f.&#x27;</span> % math.pi)</span><br><span class="line">The value of PI <span class="keyword">is</span> approximately <span class="number">3.142</span>.</span><br></pre></td></tr></table></figure>
+<h1 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h1><h2 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h2><p>从 0 开始，向正负走</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>a = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a[<span class="number">0</span>]</span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a[-<span class="number">1</span>]</span><br><span class="line"><span class="number">4</span></span><br></pre></td></tr></table></figure>
+<h2 id="切片"><a href="#切片" class="headerlink" title="切片"></a>切片</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>a = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a[<span class="number">2</span>:<span class="number">3</span>]</span><br><span class="line">[<span class="number">3</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a[:<span class="number">3</span>]</span><br><span class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a[<span class="number">2</span>:<span class="number">5</span>:<span class="number">2</span>]</span><br><span class="line">[<span class="number">3</span>, <span class="number">5</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a[<span class="number">5</span>:<span class="number">2</span>:-<span class="number">1</span>]</span><br><span class="line">[<span class="number">6</span>, <span class="number">5</span>, <span class="number">4</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a[::-<span class="number">1</span>]</span><br><span class="line">[<span class="number">10</span>, <span class="number">9</span>, <span class="number">8</span>, <span class="number">7</span>, <span class="number">6</span>, <span class="number">5</span>, <span class="number">4</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span>]</span><br></pre></td></tr></table></figure>
+<h2 id="更新"><a href="#更新" class="headerlink" title="更新"></a>更新</h2><p>一般用 <code>list.append()</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>a=[]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a.append(<span class="number">1</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a.append(<span class="number">1</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a</span><br><span class="line">[<span class="number">1</span>, <span class="number">1</span>]</span><br></pre></td></tr></table></figure>
+<h2 id="函数-amp-方法"><a href="#函数-amp-方法" class="headerlink" title="函数  &amp; 方法"></a>函数  &amp; 方法</h2><p>复制自<a target="_blank" rel="noopener" href="https://www.w3cschool.cn/python3/python3-list.html">there</a></p>
+<p>Python列表包含以下函数:</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">序号</th>
+<th style="text-align:left">函数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">1</td>
+<td style="text-align:left"><code>len(list)</code> 列表元素个数</td>
+</tr>
+<tr>
+<td style="text-align:left">2</td>
+<td style="text-align:left"><code>max(list)</code> 返回列表元素最大值</td>
+</tr>
+<tr>
+<td style="text-align:left">3</td>
+<td style="text-align:left"><code>min(list)</code> 返回列表元素最小值</td>
+</tr>
+<tr>
+<td style="text-align:left">4</td>
+<td style="text-align:left"><code>list(seq)</code>将序列（元组，集合等）转换为列表</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Python列表包含以下方法:</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">序号</th>
+<th style="text-align:left">方法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">1</td>
+<td style="text-align:left"><code>list.append(obj)</code> 在列表末尾添加新的对象</td>
+</tr>
+<tr>
+<td style="text-align:left">2</td>
+<td style="text-align:left"><code>list.count(obj)</code> 统计某个元素在列表中出现的次数</td>
+</tr>
+<tr>
+<td style="text-align:left">3</td>
+<td style="text-align:left"><code>list.extend(seq)</code> 在列表末尾一次性追加另一个序列中的多个值（用新列表扩展原来的列表）</td>
+</tr>
+<tr>
+<td style="text-align:left">4</td>
+<td style="text-align:left"><code>list.index(obj)</code> 从列表中找出某个值第一个匹配项的索引位置</td>
+</tr>
+<tr>
+<td style="text-align:left">5</td>
+<td style="text-align:left"><code>list.insert(index, obj)</code> 在列表的index的地方插入一个对象</td>
+</tr>
+<tr>
+<td style="text-align:left">6</td>
+<td style="text-align:left"><code>list.pop([index=-1])</code> 移除列表中的一个元素（默认最后一个元素），并且返回该元素的值</td>
+</tr>
+<tr>
+<td style="text-align:left">7</td>
+<td style="text-align:left"><code>list.remove(obj)</code> 移除列表中某个值的第一个匹配项</td>
+</tr>
+<tr>
+<td style="text-align:left">8</td>
+<td style="text-align:left"><code>list.reverse()</code> 反向排列列表中元素</td>
+</tr>
+<tr>
+<td style="text-align:left">9</td>
+<td style="text-align:left"><code>list.sort( key=None, reverse=False)</code> 对原列表进行排序</td>
+</tr>
+<tr>
+<td style="text-align:left">10</td>
+<td style="text-align:left"><code>list.clear()</code> 清空列表</td>
+</tr>
+<tr>
+<td style="text-align:left">11</td>
+<td style="text-align:left"><code>list.copy()</code> 复制列表</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://20160161simon.github.io/2022/02/02/%E5%AD%97%E7%AC%A6%E4%B8%B2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -469,7 +684,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">22</span>
+          <span class="site-state-item-count">23</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
