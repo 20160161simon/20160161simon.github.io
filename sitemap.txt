@@ -1,5 +1,7 @@
-https://20160161simon.github.io/2022/05/26/%E5%9B%BE%E8%AE%BA%E6%9D%82%E9%A1%B9/
+https://20160161simon.github.io/about/index.html
+https://20160161simon.github.io/index.html
 https://20160161simon.github.io/2022/05/26/%E6%95%B0%E8%AE%BA%E6%9D%82%E8%B0%88/
+https://20160161simon.github.io/2022/05/26/%E5%9B%BE%E8%AE%BA%E6%9D%82%E9%A1%B9/
 https://20160161simon.github.io/googlefe1d324e935bdce9.html
 https://20160161simon.github.io/2022/05/25/contest/apio-2022-practice-session/
 https://20160161simon.github.io/2022/05/23/contest/Codeforces-Round-793-Div-2/
@@ -19,12 +21,10 @@ https://20160161simon.github.io/2022/03/18/%E7%AE%97%E6%B3%95%E5%B0%8F%E6%84%9F%
 https://20160161simon.github.io/2022/03/18/%E6%9C%80%E7%9F%AD%E8%B7%AF%E6%9D%82%E8%B0%88/
 https://20160161simon.github.io/2022/03/18/UVA12166%20%E4%BF%AE%E6%94%B9%E5%A4%A9%E5%B9%B3/
 https://20160161simon.github.io/2022/02/02/c-%E5%B0%8F%E6%8A%80%E5%B7%A7/
-https://20160161simon.github.io/index.html
 https://20160161simon.github.io/2022/02/02/%E5%AD%97%E7%AC%A6%E4%B8%B2/
 https://20160161simon.github.io/2022/02/21/python%E5%AD%A6%E4%B9%A0/
 https://20160161simon.github.io/categories/index.html
 https://20160161simon.github.io/comments/index.html
-https://20160161simon.github.io/about/index.html
 https://20160161simon.github.io/
 https://20160161simon.github.io/tags/oi/
 https://20160161simon.github.io/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/
@@ -59,6 +59,7 @@ https://20160161simon.github.io/tags/%E8%B4%A8%E6%95%B0%E7%AD%9B/
 https://20160161simon.github.io/tags/%E6%9C%80%E7%9F%AD%E8%B7%AF/
 https://20160161simon.github.io/tags/STL/
 https://20160161simon.github.io/tags/%E7%BD%91%E7%BB%9C%E6%B5%81/
+https://20160161simon.github.io/tags/%E7%BB%84%E5%90%88%E6%95%B0%E5%AD%A6/
 https://20160161simon.github.io/categories/oi/
 https://20160161simon.github.io/categories/oi/%E6%9D%82%E9%A1%B9/
 https://20160161simon.github.io/categories/oi/%E5%9B%BE%E8%AE%BA/
