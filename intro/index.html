@@ -191,10 +191,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2022-06-07 21:10:02 / 修改时间：21:34:21" itemprop="dateCreated datePublished" datetime="2022-06-07T21:10:02+08:00">2022-06-07</time>
+              <time title="创建时间：2022-06-07 21:10:02" itemprop="dateCreated datePublished" datetime="2022-06-07T21:10:02+08:00">2022-06-07</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-06-08 00:00:42" itemprop="dateModified" datetime="2022-06-08T00:00:42+08:00">2022-06-08</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -242,6 +248,10 @@
 
       
           <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>这篇作为动态规划学习笔记，记录一些好玩的动规的点。</p>
+<h1 id="常规dp"><a href="#常规dp" class="headerlink" title="常规dp"></a>常规dp</h1><h2 id="同时表达"><a href="#同时表达" class="headerlink" title="同时表达"></a>同时表达</h2><p>这个技巧实在太妙了，必须记下来。</p>
+<p>源自<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/UVA10859">这题</a></p>
+<p>如果一道 dp 问在 $a$ 最小的情况下 $b$ 最小，那么可以表达为 $a\times M+b$ 来 dp。</p>
+<p>当然这不是万能的，有一定局限性，需根据题目进行思考。</p>
 <h1 id="状压"><a href="#状压" class="headerlink" title="状压"></a>状压</h1><h2 id="SOS-Sum-of-Subsets-DP"><a href="#SOS-Sum-of-Subsets-DP" class="headerlink" title="SOS ( Sum of Subsets ) DP"></a>SOS ( Sum of Subsets ) DP</h2><p><a href="https://20160161simon.github.io/2022/05/17/SOS-dp-%E5%AE%9E%E7%8E%B0%E7%8A%B6%E5%8E%8B%E5%AD%90%E9%9B%86%E5%92%8C/">之前写过了</a></p>
 <h2 id="子集非求和-或等价-遍历"><a href="#子集非求和-或等价-遍历" class="headerlink" title="子集非求和(或等价)遍历"></a>子集非求和(或等价)遍历</h2><p>SOS 不是万能的，有时候我们也会用到一些 $O(3^n)$ 算法。</p>
 <p>一种常用的遍历方式：</p>
@@ -305,7 +315,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-06-07 21:13:54" itemprop="dateModified" datetime="2022-06-07T21:13:54+08:00">2022-06-07</time>
+                <time title="修改时间：2022-06-08 01:20:47" itemprop="dateModified" datetime="2022-06-08T01:20:47+08:00">2022-06-08</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -392,6 +402,14 @@
 <summary><font color=gray>思考后查看</font></summary>
 &nbsp;&nbsp;&nbsp; 常规状压，学习子集遍历方式。
 </details>
+
+<p><a target="_blank" rel="noopener" href="https://onlinejudge.org/index.php?option=com_onlinejudge&amp;Itemid=8&amp;category=20&amp;page=show_problem&amp;problem=1800">UVA10859 Placing Lampposts</a></p>
+<details>
+<summary><font color=gray>思考后查看</font></summary>
+&nbsp;&nbsp;&nbsp; 让 dp 的值同时表达两个具有优先级大小关系的值
+</details>
+
+
       
     </div>
 
@@ -441,7 +459,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-06-07 21:07:34" itemprop="dateModified" datetime="2022-06-07T21:07:34+08:00">2022-06-07</time>
+                <time title="修改时间：2022-06-07 21:40:02" itemprop="dateModified" datetime="2022-06-07T21:40:02+08:00">2022-06-07</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -489,7 +507,9 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本篇作为复健的一环，希望能在真正退役前做一点事。可能对未来大学也有点用吧…</p>
+          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>图论学习笔记，记录一些有趣或必要的知识。</p>
+<h1 id="Tricks"><a href="#Tricks" class="headerlink" title="Tricks"></a>Tricks</h1><p>记录一点小 tricks</p>
+<h2 id="无向无环图"><a href="#无向无环图" class="headerlink" title="无向无环图"></a>无向无环图</h2><p>等价于森林。很好理解，但有时总会意识不到。</p>
 <h1 id="拓补排序"><a href="#拓补排序" class="headerlink" title="拓补排序"></a>拓补排序</h1><p>根据大小（或优先）关系进行排序，对于图 $G=(V,E)$ 时间复杂度为 $O(V+E)$，<strong>只有有向无环图（DAG）具有拓补排序</strong></p>
 <p>具体操作</p>
 <ol>
