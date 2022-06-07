@@ -28,7 +28,7 @@
 <meta property="og:description" content="学习自这篇 问题给一个固定的长度为 $2^N$ 的数组 $A$ 让你求 $F[x]$, $F[x]$ 定义如下：  F[x]&#x3D;\sum\limits_{i\in x}A[i]朴素做法对每个 $x$ 暴力枚举子集，有二项式定理可以证明这种做法是 $O(3^N)$ 的。 SOS ( Sum of Subsets ) DP这其实是一种小技巧，类似滚动数组，虽然不学你也许能想出来，但还是学了方便很多。 在">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-05-17T12:18:41.000Z">
-<meta property="article:modified_time" content="2022-05-17T16:05:17.958Z">
+<meta property="article:modified_time" content="2022-06-07T08:59:50.443Z">
 <meta property="article:author" content="20160161simon">
 <meta property="article:tag" content="oi">
 <meta property="article:tag" content="状压dp">
@@ -204,7 +204,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-05-18 00:05:17" itemprop="dateModified" datetime="2022-05-18T00:05:17+08:00">2022-05-18</time>
+                <time title="修改时间：2022-06-07 16:59:50" itemprop="dateModified" datetime="2022-06-07T16:59:50+08:00">2022-06-07</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -271,7 +271,7 @@ F[x]=\sum\limits_{i\in x}A[i]</script><h1 id="朴素做法"><a href="#朴素做�
 <p>version 1.</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(ll sit=<span class="number">0</span>;sit&lt;(<span class="number">1</span>&lt;&lt;N);sit++)&#123;</span><br><span class="line">    dp[sit][<span class="number">-1</span>] = a[sit] #显然是个假代码</span><br><span class="line">    <span class="keyword">for</span>(ll i=<span class="number">0</span>;i&lt;N;i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(sit&amp;(<span class="number">1</span>&lt;&lt;i))</span><br><span class="line">			dp[sit][i]=dp[sit][i<span class="number">-1</span>]+dp[sit^(<span class="number">1</span>&lt;&lt;i)][i<span class="number">-1</span>];</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">			dp[sit][i]=dp[sit][i<span class="number">-1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>version 2. 翻转下循环来进行空间优化</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(ll sit=<span class="number">0</span>;sit&lt;(<span class="number">1</span>&lt;&lt;N);sit++) dp[sit][k]=a[sit][k];</span><br><span class="line"><span class="keyword">for</span>(ll x=<span class="number">0</span>;x&lt;N;x++)&#123;</span><br><span class="line">	<span class="keyword">for</span>(ll sit=<span class="number">0</span>;sit&lt;(<span class="number">1</span>&lt;&lt;N);sit++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(sit&amp;(<span class="number">1</span>&lt;&lt;x)) </span><br><span class="line">			dp[sit][k]+=dp[sit^(<span class="number">1</span>&lt;&lt;x)][k],dp[sit][k]%=P;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(ll sit=<span class="number">0</span>;sit&lt;(<span class="number">1</span>&lt;&lt;N);sit++) dp[sit]=a[sit];</span><br><span class="line"><span class="keyword">for</span>(ll x=<span class="number">0</span>;x&lt;N;x++)&#123;</span><br><span class="line">	<span class="keyword">for</span>(ll sit=<span class="number">0</span>;sit&lt;(<span class="number">1</span>&lt;&lt;N);sit++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(sit&amp;(<span class="number">1</span>&lt;&lt;x)) </span><br><span class="line">			dp[sit]+=dp[sit^(<span class="number">1</span>&lt;&lt;x)],dp[sit]%=P;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
     </div>
 
